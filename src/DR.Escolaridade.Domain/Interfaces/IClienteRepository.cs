@@ -9,6 +9,6 @@ namespace DR.Escolaridade.Domain.Interfaces
 
         Cliente ObterPorEmail(string email);
 
-        IEnumerable<Cliente> ObterAtivo();
+        IEnumerable<Cliente> ObterAtivos();
     }
 }

@@ -7,6 +7,10 @@ Site do curso: [desenvolvedor.io](https://desenvolvedor.io/)
 ### Frameworks
 - Asp.Net MVC5
 - _ORM_ EntityFramework 6
+- AutoMapper [AutoMapper 8.0.0](https://automapper.org/)
+    -Comando: PM> Install-Package AutoMapper
+- Dapper [Dapper 2.0.35](https://github.com/StackExchange/Dapper)
+    -Comando: PM> Install-Package Dapper *(Pega a versão mais recente) ou no Nuget
 
 ### Descrição da aplicação
 - Arquitetura: DDD (Domain Driven Domain)

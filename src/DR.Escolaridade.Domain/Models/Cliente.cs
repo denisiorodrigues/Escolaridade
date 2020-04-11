@@ -5,6 +5,11 @@ namespace DR.Escolaridade.Domain.Models
 {
     public class Cliente : Entity
     {
+        public Cliente()
+        {
+            Enderecos = new List<Endereco>();
+        }
+
         public string Nome { get; set; }
 
         public string Email { get; set; }
@@ -42,8 +47,8 @@ namespace DR.Escolaridade.Domain.Models
 
         public void DefinirComoAtivo()
         {
-            Ativo = false;
-            Excluido = true;
+            Ativo = true;
+            Excluido = false;
         }
 
         public override bool EhValido()

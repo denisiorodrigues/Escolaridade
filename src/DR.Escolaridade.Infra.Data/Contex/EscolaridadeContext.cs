@@ -9,6 +9,14 @@ namespace DR.Escolaridade.Infra.Data.Contex
 {
     public class EscolaridadeContext : DbContext
     {
+
+        public EscolaridadeContext() : base("DefaultConnection")
+        {
+            Configuration.ProxyCreationEnabled = false;
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.AutoDetectChangesEnabled = false;
+        }
+
         public DbSet<Cliente> Clientes { get; set; }
 
         public DbSet<Endereco> Enderecos { get; set; }

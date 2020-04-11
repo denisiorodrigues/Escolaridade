@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Dapper;
 using DR.Escolaridade.Domain.Interfaces;
 using DR.Escolaridade.Domain.Models;
 
@@ -8,9 +9,15 @@ namespace DR.Escolaridade.Infra.Data.Repository
 {
     public class ClienteRepository : Repository<Cliente>, IClienteRepository
     {
-        public IEnumerable<Cliente> ObterAtivo()
+        public IEnumerable<Cliente> ObterAtivos()
         {
-            return Buscar(c => c.Ativo);
+            //return Buscar(c => c.Ativo);
+            //Transferir a consulta para outro arquivo como:
+            //Resource ou xml (qualquer arquivo para náo ficar hardcode)
+            const string sql = @"SELECT * FROM Clientes c "+
+                                "WHERE c.Excluido = 0 AND c.Ativo = 1";
+
+            return Db.Database.Connection.Query<Cliente>(sql);
         }
 
         public Cliente ObterPorCPF(string cpf)
@@ -25,10 +32,15 @@ namespace DR.Escolaridade.Infra.Data.Repository
 
         public override Cliente ObterPorId(Guid id)
         {
-            return Db.Clientes
-                .AsNoTracking()
-                .Include("Enderecos")
-                .FirstOrDefault(c => c.Id == id);
+            const string sql = @"SELECT * FROM Clientes c " +
+                                "LEFT JOIN Enderecos e ON c.Id = e.ClienteId" +
+                                " WHERE c.Id = @uid AND c.Excluido = 0 AND c.Ativo = 1";
+
+            return Db.Database.Connection.Query<Cliente, Endereco, Cliente>(sql,
+                (c, e) => {
+                    c.AdicioanrEndereco(e);
+                    return c;
+                }, new { uid = id}).FirstOrDefault();
         }
 
         public override void Remover(Guid id)
