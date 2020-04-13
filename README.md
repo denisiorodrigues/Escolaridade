@@ -10,7 +10,8 @@ Site do curso: [desenvolvedor.io](https://desenvolvedor.io/)
 - AutoMapper [AutoMapper 8.0.0](https://automapper.org/)
     -Comando: PM> Install-Package AutoMapper
 - Dapper [Dapper 2.0.35](https://github.com/StackExchange/Dapper)
-    -Comando: PM> Install-Package Dapper *(Pega a versão mais recente) ou no Nuget
+    -Comando: PM> Install-Package Dapper *(**Pega a versão mais recente**) ou no Nuget
+- Bootstrap 3.4.1 [Bootstrap 3.4.1](https://getbootstrap.com/docs/3.4/)
 
 ### Descrição da aplicação
 - Arquitetura: DDD (Domain Driven Domain)

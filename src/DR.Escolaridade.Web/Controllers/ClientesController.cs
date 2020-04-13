@@ -1,6 +1,7 @@
 ﻿using DR.Escolaridade.Application.Interfaces;
 using DR.Escolaridade.Application.Services;
 using DR.Escolaridade.Application.ViewModels;
+using DR.Escolaridade.Infra.CrossCutting.Filters;
 using System;
 using System.Web.Mvc;
 
@@ -10,22 +11,30 @@ namespace DR.Escolaridade.Web.Controllers
     [RoutePrefix("area-administrativa/gestao-clientes")]
     public class ClientesController : Controller
     {
+        // LI,DE,IN,ED,EX
+        //LI -> Listar
+        //DE -> Detalhar
+        //IN -> Incluir
+        //ED -> Editar
+        //EX -> Excluir
+
         private IClienteAppService _clienteAppService;
-        private const string role = "Admin";
 
         public ClientesController()
         {
             _clienteAppService = new ClienteAppService();   
         }
 
-        [AllowAnonymous]
+        [ClaimsAuthorize("Cliente","LI")]
         [Route("")]
         [Route("listar-todos")]
         public ActionResult Index()
         {
             return View(_clienteAppService.ObterAtivos());
         }
+
         //Os dois pontos é passando um DataType, serve para proteção da aplicação
+        [ClaimsAuthorize("Cliente","DE")]
         [Route("{id:guid}/detalhes")]
         public ActionResult Details(Guid id)
         {
@@ -36,12 +45,14 @@ namespace DR.Escolaridade.Web.Controllers
             return View(clienteViewModel);
         }
 
+        [ClaimsAuthorize("Cliente","IN")]
         [Route("criar-novo")]
         public ActionResult Create()
         {
             return View();
         }
 
+        [ClaimsAuthorize("Cliente","IN")]
         [Route("criar-novo")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -54,6 +65,7 @@ namespace DR.Escolaridade.Web.Controllers
            return RedirectToAction("Index");
         }
 
+        [ClaimsAuthorize("Cliente","ED")]
         [Route("{id:guid}/editar")]
         public ActionResult Edit(Guid id)
         {
@@ -64,6 +76,7 @@ namespace DR.Escolaridade.Web.Controllers
             return View(clienteViewModel);
         }
 
+        [ClaimsAuthorize("Cliente","ED")]
         [Route("{id:guid}/editar")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -76,7 +89,7 @@ namespace DR.Escolaridade.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize(Roles ="Admin,Gestor")]
+        [ClaimsAuthorize("Cliente", "EX")]
         [Route("{id:guid}/excluir")]
         public ActionResult Delete(Guid id)
         {
@@ -87,7 +100,7 @@ namespace DR.Escolaridade.Web.Controllers
             return View(clienteViewModel);
         }
 
-        [Authorize(Roles = role)]
+        [ClaimsAuthorize("Cliente", "EX")]
         [Route("{id:guid}/excluir")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
