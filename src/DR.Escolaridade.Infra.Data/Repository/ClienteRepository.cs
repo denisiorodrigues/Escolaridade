@@ -38,7 +38,7 @@ namespace DR.Escolaridade.Infra.Data.Repository
 
             return Db.Database.Connection.Query<Cliente, Endereco, Cliente>(sql,
                 (c, e) => {
-                    c.AdicioanrEndereco(e);
+                    c.AdicionarEndereco(e);
                     return c;
                 }, new { uid = id}).FirstOrDefault();
         }

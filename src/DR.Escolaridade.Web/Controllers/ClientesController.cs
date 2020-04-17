@@ -1,15 +1,15 @@
 ﻿using DR.Escolaridade.Application.Interfaces;
-using DR.Escolaridade.Application.Services;
 using DR.Escolaridade.Application.ViewModels;
 using DR.Escolaridade.Infra.CrossCutting.Filters;
 using System;
+using DomainValidation.Validation;
 using System.Web.Mvc;
 
 namespace DR.Escolaridade.Web.Controllers
 {
     [Authorize]
     [RoutePrefix("area-administrativa/gestao-clientes")]
-    public class ClientesController : Controller
+    public class ClientesController : BaseController
     {
         // LI,DE,IN,ED,EX
         //LI -> Listar
@@ -18,11 +18,11 @@ namespace DR.Escolaridade.Web.Controllers
         //ED -> Editar
         //EX -> Excluir
 
-        private IClienteAppService _clienteAppService;
+        private readonly IClienteAppService _clienteAppService;
 
-        public ClientesController()
+        public ClientesController(IClienteAppService clienteAppService)
         {
-            _clienteAppService = new ClienteAppService();   
+            _clienteAppService = clienteAppService;
         }
 
         [ClaimsAuthorize("Cliente","LI")]
@@ -60,9 +60,12 @@ namespace DR.Escolaridade.Web.Controllers
         {
             if (!ModelState.IsValid) return View(clienteEndereco);
 
-            _clienteAppService.Adicionar(clienteEndereco);
+            clienteEndereco = _clienteAppService.Adicionar(clienteEndereco);
+            if (clienteEndereco.Cliente.ValidationResult.IsValid) return RedirectToAction("Index");
 
-           return RedirectToAction("Index");
+            PopularModelStateComErros(clienteEndereco.Cliente.ValidationResult);
+
+            return View(clienteEndereco);
         }
 
         [ClaimsAuthorize("Cliente","ED")]

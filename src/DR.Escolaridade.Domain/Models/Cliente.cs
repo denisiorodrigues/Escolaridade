@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DR.Escolaridade.Domain.Validation.Clientes;
+using System;
 using System.Collections.Generic;
 
 namespace DR.Escolaridade.Domain.Models
@@ -27,11 +28,11 @@ namespace DR.Escolaridade.Domain.Models
         //Está na entidade
         //public DateTime DataCadastro { get; set; }
 
-        public void AdicioanrEndereco(Endereco endereco)
+        public void AdicionarEndereco(Endereco endereco)
         {
             if (!endereco.EhValido())
             {
-                this.ValidationResult = endereco.ValidationResult;
+                AdicionarErrosValidacao(endereco.ValidationResult);
                 //Retorno só para parar a aplicação
                 return;
             }
@@ -53,17 +54,8 @@ namespace DR.Escolaridade.Domain.Models
 
         public override bool EhValido()
         {
-            if (string.IsNullOrEmpty(Nome))
-            {
-                AdicionarErroValidacao("Nome", "O Nome não pode está vazio");
-            }
-
-            if (string.IsNullOrEmpty(Email))
-            {
-                AdicionarErroValidacao("Email", "O E-mail não pode está vazio");
-            }
-
-            return ValidationResult.Count == 0;
+            ValidationResult = new ClienteEstaConsistenteValidation().Validate(this);
+            return ValidationResult.IsValid;
         }
     }
 }

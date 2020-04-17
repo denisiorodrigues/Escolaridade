@@ -12,10 +12,13 @@ namespace DR.Escolaridade.Application.Services
     public class ClienteAppService : AppServiceBase, IClienteAppService
     {
         private readonly IClienteRepository _clienteRepository;
+        private readonly IClienteService _clienteService;
 
-        public ClienteAppService()
+        public ClienteAppService(IClienteRepository clienteRepository, 
+                                 IClienteService clienteService)
         {
-            _clienteRepository = new ClienteRepository();
+            _clienteRepository = clienteRepository;
+            _clienteService = clienteService;
         }
 
         public IEnumerable<ClienteViewModel> ObterAtivos()
@@ -49,11 +52,15 @@ namespace DR.Escolaridade.Application.Services
             var endereco= Mapper.Map<Endereco>(clienteEnderecoViewModel.Endereco);
 
             cliente.DefinirComoAtivo();
-            cliente.AdicioanrEndereco(endereco);
+            cliente.AdicionarEndereco(endereco);
 
-            if (!cliente.EhValido()) return clienteEnderecoViewModel;
+            var clienteReturn = _clienteService.Adicionar(cliente);
 
-            _clienteRepository.Adicionar(cliente);
+            if (!clienteReturn.ValidationResult.IsValid)
+            {
+                clienteEnderecoViewModel.Cliente.ValidationResult = clienteReturn.ValidationResult;
+            }
+
             return clienteEnderecoViewModel;
         }
 
@@ -66,18 +73,18 @@ namespace DR.Escolaridade.Application.Services
 
             if (!cliente.EhValido()) return clienteViewModel;
 
-            _clienteRepository.Atualizar(cliente);
+            _clienteService.Atualizar(cliente);
             return clienteViewModel;
         }
 
         public void Remover(Guid id)
         {
-            _clienteRepository.Remover(id);
+            _clienteService.Remover(id);
         }
 
         public void Dispose()
         {
-            _clienteRepository.Dispose();
+            _clienteService.Dispose();
         }
     }
 }
