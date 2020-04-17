@@ -25,13 +25,16 @@ namespace DR.Escolaridade.Domain.Models
 
         public override bool EhValido()
         {
-            if (string.IsNullOrWhiteSpace(Logradouro))
-                AdicionarErroValidacao("Logradouro", "O logradouro não pode estar vazio!");
+            //Adicionar as validações do endereço
+            //if (string.IsNullOrWhiteSpace(Logradouro))
+            //    AdicionarErroValidacao("Logradouro", "O logradouro não pode estar vazio!");
 
-            if (string.IsNullOrWhiteSpace(CEP))
-                AdicionarErroValidacao("CEP", "O CEP não pode estar vazio!");
+            //if (string.IsNullOrWhiteSpace(CEP))
+            //    AdicionarErroValidacao("CEP", "O CEP não pode estar vazio!");
 
-            return ValidationResult.Count == 0;
+            //return ValidationResult.Count == 0;
+
+            return true;
         }
     }
 }

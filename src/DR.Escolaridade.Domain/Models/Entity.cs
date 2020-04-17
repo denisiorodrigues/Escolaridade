@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainValidation.Validation;
+using System;
 using System.Collections.Generic;
 
 namespace DR.Escolaridade.Domain.Models
@@ -8,16 +9,26 @@ namespace DR.Escolaridade.Domain.Models
         protected Entity()
         {
             Id = Guid.NewGuid();
-            ValidationResult = new Dictionary<string, string>();
+            ValidationResult = new ValidationResult();
         }
 
         public Guid Id { get; set; }
 
-        public IDictionary<string, string> ValidationResult { get; set; }
+        public ValidationResult ValidationResult { get; set; }
 
         public void AdicionarErroValidacao(string erro, string mensagem)
         {
-            ValidationResult.Add(erro, mensagem);
+            ValidationResult.Add(new ValidationError(mensagem));
+        }
+
+        public void AdicionarErrosValidacao(ValidationResult validationResult)
+        {
+            ValidationResult.Add(validationResult);
+        }
+
+        public void ZerarListaErros()
+        {
+            ValidationResult = new ValidationResult();
         }
 
         public DateTime DataCadastro { get; set; }
