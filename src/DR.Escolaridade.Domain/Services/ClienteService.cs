@@ -1,5 +1,6 @@
 ﻿using DR.Escolaridade.Domain.Interfaces;
 using DR.Escolaridade.Domain.Models;
+using DR.Escolaridade.Domain.Validation.Clientes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,10 @@ namespace DR.Escolaridade.Domain.Services
         {
             if (!cliente.EhValido()) return cliente;
 
-            _clienteRepository.Adicionar(cliente);
+            cliente.ValidationResult = new ClienteEstaAptoParaCadastroValidation(_clienteRepository).Validate(cliente);
+
+            if (cliente.ValidationResult.IsValid) _clienteRepository.Adicionar(cliente);
+
             return cliente;
         }
 

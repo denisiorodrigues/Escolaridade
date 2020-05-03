@@ -21,6 +21,7 @@ namespace DR.Escolaridade.Infra.CrossCutting.Filters
         {
             //ClaimsIdentity userClaims = (ClaimsIdentity)httpContext.User.Identity; 
             //return ClaimsHelper.ValidarClaimsUsuario(userClaims, _claimName, _claimValue);
+            //===> Como deve ser para eviitar o erro
             var identity = (ClaimsIdentity)httpContext.User.Identity;
             var claim = identity.Claims.FirstOrDefault(c => c.Type == _claimName);
             return claim != null && claim.Value.Contains(_claimValue);

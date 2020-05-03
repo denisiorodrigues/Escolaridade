@@ -18,6 +18,7 @@ Site do curso: [desenvolvedor.io](https://desenvolvedor.io/)
     -Mecanismo somente de injeção de dependência, para uma camada respsável somente pra isso
 - DomainValidation [DomainValidation 1.0.0](https://www.nuget.org/packages/DomainValidation/)
     -O padrão de especificação é uma ótima maneira de validar regras de negócios complexas no domínio.
+    -Utiliza o padrão de Fluente Validation
     -Comando: PM> _Install-Package DomainValidation -Version 1.0.0_
 
 ### Descrição da aplicação

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
+using DomainValidation.Validation;
 using DR.Escolaridade.Application.Interfaces;
 using DR.Escolaridade.Application.ViewModels;
 using DR.Escolaridade.Domain.Interfaces;
@@ -15,7 +16,8 @@ namespace DR.Escolaridade.Application.Services
         private readonly IClienteService _clienteService;
 
         public ClienteAppService(IClienteRepository clienteRepository, 
-                                 IClienteService clienteService)
+                                 IClienteService clienteService,
+                                 IUnitOfWork uow) : base(uow)
         {
             _clienteRepository = clienteRepository;
             _clienteService = clienteService;
@@ -56,10 +58,26 @@ namespace DR.Escolaridade.Application.Services
 
             var clienteReturn = _clienteService.Adicionar(cliente);
 
-            if (!clienteReturn.ValidationResult.IsValid)
+            //BeginTransaction();
+            ////BllaBLaBLa
+            //try
+            //{
+            //    Commit();
+            //}
+            //catch (Exception)
+            //{
+            //    Rollback();
+            //}
+
+            if (clienteReturn.ValidationResult.IsValid)
             {
-                clienteEnderecoViewModel.Cliente.ValidationResult = clienteReturn.ValidationResult;
+                if (!SaveChanges())
+                {
+                    AdicionarErroValidacao(clienteReturn.ValidationResult, "Ocorreu um erro ao salvar os dados no banco de dados");
+                }
             }
+
+            clienteEnderecoViewModel.Cliente.ValidationResult = clienteReturn.ValidationResult;
 
             return clienteEnderecoViewModel;
         }

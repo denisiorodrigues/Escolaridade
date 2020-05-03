@@ -1,4 +1,5 @@
-﻿using DR.Escolaridade.Domain.Models;
+﻿using DomainValidation.Validation;
+using DR.Escolaridade.Domain.Models;
 using DR.Escolaridade.Infra.Data.Mappings;
 using System;
 using System.Data.Entity;
@@ -39,6 +40,8 @@ namespace DR.Escolaridade.Infra.Data.Contex
 
             modelBuilder.Configurations.Add(new ClienteMapping());
             modelBuilder.Configurations.Add(new EnderecoMapping());
+
+            //modelBuilder.Ignore<ValidationResult>();
 
             base.OnModelCreating(modelBuilder); 
         }

@@ -4,11 +4,14 @@ using System.Linq;
 using Dapper;
 using DR.Escolaridade.Domain.Interfaces;
 using DR.Escolaridade.Domain.Models;
+using DR.Escolaridade.Infra.Data.Contex;
 
 namespace DR.Escolaridade.Infra.Data.Repository
 {
     public class ClienteRepository : Repository<Cliente>, IClienteRepository
     {
+        public ClienteRepository(EscolaridadeContext context) : base(context){}
+
         public IEnumerable<Cliente> ObterAtivos()
         {
             //return Buscar(c => c.Ativo);

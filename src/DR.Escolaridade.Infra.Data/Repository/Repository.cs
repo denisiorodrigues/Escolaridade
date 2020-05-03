@@ -14,16 +14,15 @@ namespace DR.Escolaridade.Infra.Data.Repository
         protected EscolaridadeContext Db;
         protected DbSet<TEntity> DbSet;
 
-        protected Repository()
+        protected Repository(EscolaridadeContext context)
         {
-            Db = new EscolaridadeContext();
+            Db = context;
             DbSet = Db.Set<TEntity>();
         }
 
         public virtual void Adicionar(TEntity entity)
         {
             DbSet.Add(entity);
-            SaveChanges();
         }
 
         public virtual void Atualizar(TEntity entity)
@@ -31,8 +30,6 @@ namespace DR.Escolaridade.Infra.Data.Repository
             var entry = Db.Entry(entity);
             DbSet.Attach(entity);
             entry.State = EntityState.Modified;
-
-            SaveChanges();
         }
 
         public virtual void Remover(Guid id)

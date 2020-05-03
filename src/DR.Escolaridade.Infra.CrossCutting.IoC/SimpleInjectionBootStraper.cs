@@ -2,7 +2,9 @@
 using DR.Escolaridade.Application.Services;
 using DR.Escolaridade.Domain.Interfaces;
 using DR.Escolaridade.Domain.Services;
+using DR.Escolaridade.Infra.Data.Contex;
 using DR.Escolaridade.Infra.Data.Repository;
+using DR.Escolaridade.Infra.Data.UoW;
 using SimpleInjector;
 
 namespace DR.Escolaridade.Infra.CrossCutting.IoC
@@ -24,6 +26,12 @@ namespace DR.Escolaridade.Infra.CrossCutting.IoC
 
             //INFRA
             container.Register<IClienteRepository, ClienteRepository>(Lifestyle.Scoped);
+
+            //UnitOfWork
+            container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
+
+            //Context
+            container.Register<EscolaridadeContext>(Lifestyle.Scoped);
         }
     }
 }
