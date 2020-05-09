@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.Escolaridade.Infra.Cross
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.Escolaridade.Infra.CrossCutting.IoC", "src\DR.Escolaridade.Infra.CrossCutting.IoC\DR.Escolaridade.Infra.CrossCutting.IoC.csproj", "{788CE0BB-B516-4FE1-AEC3-3538E6337E41}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.Escolaridade.REST.ClienteAPI", "src\DR.Escolaridade.REST.ClienteAPI\DR.Escolaridade.REST.ClienteAPI.csproj", "{B26A8FE7-8D0D-4513-B6BC-1C659A1645BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{788CE0BB-B516-4FE1-AEC3-3538E6337E41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{788CE0BB-B516-4FE1-AEC3-3538E6337E41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{788CE0BB-B516-4FE1-AEC3-3538E6337E41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B26A8FE7-8D0D-4513-B6BC-1C659A1645BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B26A8FE7-8D0D-4513-B6BC-1C659A1645BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B26A8FE7-8D0D-4513-B6BC-1C659A1645BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B26A8FE7-8D0D-4513-B6BC-1C659A1645BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{50A5CDA4-C9A7-4D4F-83A8-DA5C0BF72158} = {06852762-1E97-4C5F-A57D-E580C8C04AEA}
 		{AF28145F-DBF7-408D-ABF6-04782D9EE329} = {6578840C-88F0-4F21-9CDB-7FCF4D7E2F20}
 		{788CE0BB-B516-4FE1-AEC3-3538E6337E41} = {6578840C-88F0-4F21-9CDB-7FCF4D7E2F20}
+		{B26A8FE7-8D0D-4513-B6BC-1C659A1645BC} = {AD95BD72-48C5-49EC-91DE-8AC9AF07A656}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1FC45C10-5BC0-4699-BB73-2F624F2DD742}

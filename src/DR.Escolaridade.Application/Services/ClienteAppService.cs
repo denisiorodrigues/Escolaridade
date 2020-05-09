@@ -91,7 +91,18 @@ namespace DR.Escolaridade.Application.Services
 
             if (!cliente.EhValido()) return clienteViewModel;
 
-            _clienteService.Atualizar(cliente);
+            var clienteReturn = _clienteService.Atualizar(cliente);
+
+            if (clienteReturn.ValidationResult.IsValid)
+            {
+                if (!SaveChanges())
+                {
+                    AdicionarErroValidacao(clienteReturn.ValidationResult, "Ocorreu um erro ao salvar os dados no banco de dados");
+                }
+            }
+
+            clienteReturn.ValidationResult = clienteReturn.ValidationResult;
+
             return clienteViewModel;
         }
 
