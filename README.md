@@ -1,6 +1,7 @@
 # Escolaridade
 Aplicação de estudo que simula um sistema de gestão escolar
-Temos a implementação em Web Api
+Temos a implementação em Web Api e Teste de unidade, onde os testes estão separados por camada para não separar as camadas em projeto.
+Foi utilizado a biblioteca RhinoMocks para ajudar nos testes de validação
 Essa aplicação segue o roteiro do curso de C# Avaçado do Professor [Eduardo Pires](https://github.com/EduardoPires).
 
 ### Desafio:
@@ -35,6 +36,8 @@ Site do curso: [desenvolvedor.io](https://desenvolvedor.io/)
 	- integração do projeto de web API com a injeção de dependência
 - CORS [Microsoft.AspNet.WebApi.Cors.5.2.7](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Cors)
 	- Habilitar CORS
+- RhinoMocks [RhinoMocks 3.6.1](https://www.nuget.org/packages/RhinoMocks/)
+	- Mocar objetos para efetuar os testes de unidade
 
 ### Descrição da aplicação
 - Arquitetura: DDD (Domain Driven Domain)

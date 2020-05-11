@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.Escolaridade.Infra.Cross
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.Escolaridade.REST.ClienteAPI", "src\DR.Escolaridade.REST.ClienteAPI\DR.Escolaridade.REST.ClienteAPI.csproj", "{B26A8FE7-8D0D-4513-B6BC-1C659A1645BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DR.Escolaridade.Domain.Test", "test\DR.Escolaridade.Domain.Test\DR.Escolaridade.Domain.Test.csproj", "{CA67823B-3409-4717-B3EA-05773AEB1D73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{B26A8FE7-8D0D-4513-B6BC-1C659A1645BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B26A8FE7-8D0D-4513-B6BC-1C659A1645BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B26A8FE7-8D0D-4513-B6BC-1C659A1645BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA67823B-3409-4717-B3EA-05773AEB1D73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA67823B-3409-4717-B3EA-05773AEB1D73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA67823B-3409-4717-B3EA-05773AEB1D73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA67823B-3409-4717-B3EA-05773AEB1D73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +87,7 @@ Global
 		{AF28145F-DBF7-408D-ABF6-04782D9EE329} = {6578840C-88F0-4F21-9CDB-7FCF4D7E2F20}
 		{788CE0BB-B516-4FE1-AEC3-3538E6337E41} = {6578840C-88F0-4F21-9CDB-7FCF4D7E2F20}
 		{B26A8FE7-8D0D-4513-B6BC-1C659A1645BC} = {AD95BD72-48C5-49EC-91DE-8AC9AF07A656}
+		{CA67823B-3409-4717-B3EA-05773AEB1D73} = {5ECF2D5A-D30F-40C3-BF41-578C6799439D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1FC45C10-5BC0-4699-BB73-2F624F2DD742}

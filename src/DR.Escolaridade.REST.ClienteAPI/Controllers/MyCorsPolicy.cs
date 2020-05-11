@@ -13,7 +13,7 @@ namespace DR.Escolaridade.REST.ClienteAPI.Controllers
 
         public MyCorsPolicy()
         {
-            _ policy = new CorsPolicy()
+            _policy = new CorsPolicy()
             {
                 AllowAnyMethod = true,
                 AllowAnyHeader = true
